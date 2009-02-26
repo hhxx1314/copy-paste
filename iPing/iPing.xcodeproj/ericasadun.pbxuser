@@ -11,6 +11,9 @@
 		activeExecutable = 8EEBD8E00F55D81A00B06981 /* iPing */;
 		activeSDKPreference = iphonesimulator2.2;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* iPing */;
+		breakpoints = (
+			8E8B69330F5744D900A30BFD /* main.m:46 */,
+		);
 		codeSenseManager = 8EEBD8ED0F55D82700B06981 /* Code sense */;
 		executables = (
 			8EEBD8E00F55D81A00B06981 /* iPing */,
@@ -111,6 +114,8 @@
 			8E8B692A0F5740B500A30BFD /* PBXTextBookmark */ = 8E8B692A0F5740B500A30BFD /* PBXTextBookmark */;
 			8E8B692B0F5740EB00A30BFD /* PBXTextBookmark */ = 8E8B692B0F5740EB00A30BFD /* PBXTextBookmark */;
 			8E8B692C0F5740EB00A30BFD /* PBXTextBookmark */ = 8E8B692C0F5740EB00A30BFD /* PBXTextBookmark */;
+			8E8B69300F57444600A30BFD /* PBXTextBookmark */ = 8E8B69300F57444600A30BFD /* PBXTextBookmark */;
+			8E8B69310F57444600A30BFD /* PBXTextBookmark */ = 8E8B69310F57444600A30BFD /* PBXTextBookmark */;
 			8EEBD9160F55DA0400B06981 = 8EEBD9160F55DA0400B06981 /* PlistBookmark */;
 			8EEBD9180F55DA0400B06981 = 8EEBD9180F55DA0400B06981 /* PlistBookmark */;
 			8EEBD9DF0F55F3CE00B06981 = 8EEBD9DF0F55F3CE00B06981 /* PBXTextBookmark */;
@@ -122,8 +127,8 @@
 	29B97316FDCFA39411CA2CEA /* main.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1104, 1722}}";
-			sepNavSelRange = "{687, 0}";
-			sepNavVisRange = "{2206, 2149}";
+			sepNavSelRange = "{951, 0}";
+			sepNavVisRange = "{0, 2103}";
 			sepNavWindowFrame = "{{574, 79}, {1004, 949}}";
 		};
 	};
@@ -181,7 +186,7 @@
 		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
 		name = "main.m: 76";
 		rLen = 0;
-		rLoc = 2964;
+		rLoc = 2974;
 		rType = 0;
 		vrLen = 2058;
 		vrLoc = 1898;
@@ -221,7 +226,7 @@
 		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
 		name = "main.m: 29";
 		rLen = 0;
-		rLoc = 1195;
+		rLoc = 1205;
 		rType = 0;
 		vrLen = 2014;
 		vrLoc = 0;
@@ -245,7 +250,7 @@
 		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
 		name = "main.m: 29";
 		rLen = 0;
-		rLoc = 1195;
+		rLoc = 1205;
 		rType = 0;
 		vrLen = 2020;
 		vrLoc = 0;
@@ -405,7 +410,7 @@
 		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
 		name = "main.m: 29";
 		rLen = 0;
-		rLoc = 1195;
+		rLoc = 1205;
 		rType = 0;
 		vrLen = 2036;
 		vrLoc = 0;
@@ -425,7 +430,7 @@
 		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
 		name = "main.m: 30";
 		rLen = 0;
-		rLoc = 1289;
+		rLoc = 1299;
 		rType = 0;
 		vrLen = 2053;
 		vrLoc = 0;
@@ -445,7 +450,7 @@
 		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
 		name = "main.m: 30";
 		rLen = 0;
-		rLoc = 1196;
+		rLoc = 1206;
 		rType = 0;
 		vrLen = 2069;
 		vrLoc = 0;
@@ -505,7 +510,7 @@
 		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
 		name = "main.m: 30";
 		rLen = 0;
-		rLoc = 1286;
+		rLoc = 1296;
 		rType = 0;
 		vrLen = 2051;
 		vrLoc = 0;
@@ -565,7 +570,7 @@
 		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
 		name = "main.m: 32";
 		rLen = 0;
-		rLoc = 1286;
+		rLoc = 1296;
 		rType = 0;
 		vrLen = 2097;
 		vrLoc = 0;
@@ -590,6 +595,42 @@
 		vrLen = 2149;
 		vrLoc = 2206;
 	};
+	8E8B69300F57444600A30BFD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
+		name = "main.m: 10";
+		rLen = 0;
+		rLoc = 266;
+		rType = 0;
+		vrLen = 458;
+		vrLoc = 0;
+	};
+	8E8B69310F57444600A30BFD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
+		name = "main.m: 24";
+		rLen = 0;
+		rLoc = 951;
+		rType = 0;
+		vrLen = 2103;
+		vrLoc = 0;
+	};
+	8E8B69330F5744D900A30BFD /* main.m:46 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 29B97316FDCFA39411CA2CEA /* main.m */;
+		functionName = "-loadView";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 46;
+		modificationTime = 257377497.702432;
+		state = 1;
+	};
 	8EEBD8E00F55D81A00B06981 /* iPing */ = {
 		isa = PBXExecutable;
 		activeArgIndices = (
@@ -597,7 +638,7 @@
 		argumentStrings = (
 		);
 		autoAttachOnCrash = 1;
-		breakpointsEnabled = 0;
+		breakpointsEnabled = 1;
 		configStateDict = {
 		};
 		customDataFormattersEnabled = 1;
@@ -654,7 +695,7 @@
 		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
 		name = "main.m: 103";
 		rLen = 0;
-		rLoc = 3801;
+		rLoc = 3811;
 		rType = 0;
 		vrLen = 685;
 		vrLoc = 0;

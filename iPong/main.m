@@ -80,73 +80,79 @@
 	// wait for everything to catch up & print debug
 	// [self performSelector:@selector(doDebug:) withObject:[action stringByAppendingFormat:@"\n%@", [paramDict description]] afterDelay:1.0f];
 	
+	NSString *scheme = [paramDict objectForKey:@"scheme"];
+	if (!scheme) return NO;
+
+	// Recover the key parameters
+	NSString *clipboard = [paramDict objectForKey:@"clipboard"];
+	NSString *password = [paramDict objectForKey:@"password"];
+	NSString *expire = [paramDict objectForKey:@"expire"];
+	
+	// If parameters are provided, check for validity
+	if (clipboard && (![self isValidParameterName:clipboard]))
+	{
+		// clipboard must conform to legal name
+		NSString *urlString = [NSString stringWithFormat:@"%@:pasteservice?success=no&reason=InvalidClipboardName", scheme];
+		[application openURL:[NSURL URLWithString:urlString]];
+		
+		// Never gets here
+		return YES;
+	}
+	
+	if (clipboard && password && (![self isValidParameterName:password]))
+	{
+		// password must conform to legal name
+		NSString *urlString = [NSString stringWithFormat:@"%@:pasteservice?success=no&reason=InvalidPassword", scheme];
+		[application openURL:[NSURL URLWithString:urlString]];
+		
+		// Never gets here
+		return YES;
+	}
+	
+	if (clipboard && expire && ([expire intValue] == 0))
+	{
+		// Expiration time in seconds must be a positive integer
+		NSString *urlString = [NSString stringWithFormat:@"%@:pasteservice?success=no&reason=InvalidExpiry", scheme];
+		[application openURL:[NSURL URLWithString:urlString]];
+		
+		// Never gets here
+		return YES;
+	}
+
+	// Set up the key paths
+	NSString *dataFilePath = CLIPBOARD_PATH;
+	NSString *passwordPath = nil;
+	NSString *expiryPath = nil;
+	if (clipboard) dataFilePath =  [NSString stringWithFormat:@"%@/%@.txt", DOCUMENTS_FOLDER, clipboard];
+	if (clipboard) passwordPath = [NSString stringWithFormat:@"%@/%@.password", DOCUMENTS_FOLDER, clipboard];
+	if (clipboard) expiryPath =   [NSString stringWithFormat:@"%@/%@.expiration", DOCUMENTS_FOLDER, clipboard];
+
+	// Recover any existing password for the clipboard
+	NSString *pw = nil;
+	if (clipboard) pw = [NSString stringWithContentsOfFile:passwordPath encoding:NSUTF8StringEncoding error:nil];
+	
+	// If a password is associated with the clipboard, compare it to anything that was sent along, whether or not one was supplied
+	if (pw && ![pw isEqualToString:password])
+	{
+		// wrong password
+		NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?success=no&reason=WrongPassword", scheme];
+		[application openURL:[NSURL URLWithString:urlString]];
+		
+		// Never gets here
+		return YES;
+	}
+	
+	// PASTE SERVICE
 	// x-sadun-services:paste?scheme=iping&data=hello+world&clipboard=name&expire=3600
 	if ([[action uppercaseString] isEqualToString:@"PASTE"])
 	{
-		NSString *scheme = [paramDict objectForKey:@"scheme"];
-		if (!scheme) return NO;
 		
 		NSString *data = [paramDict objectForKey:@"data"];
 		if (!data) return NO;
 		
-		NSString *clipboard = [paramDict objectForKey:@"clipboard"];
-		NSString *password = [paramDict objectForKey:@"password"];
-		NSString *expire = [paramDict objectForKey:@"expire"];
-		
-		if (clipboard && (![self isValidParameterName:clipboard]))
-		{
-			// clipboard must conform to legal name
-			NSString *urlString = [NSString stringWithFormat:@"%@:pasteservice?success=no&reason=InvalidClipboardName", scheme];
-			[application openURL:[NSURL URLWithString:urlString]];
-			
-			// Never gets here
-			return YES;
-		}
-		
-		if (clipboard && password && (![self isValidParameterName:password]))
-		{
-			// password must conform to legal name
-			NSString *urlString = [NSString stringWithFormat:@"%@:pasteservice?success=no&reason=InvalidPassword", scheme];
-			[application openURL:[NSURL URLWithString:urlString]];
-			
-			// Never gets here
-			return YES;
-		}
-		
-		if (clipboard && expire && ([expire intValue] == 0))
-		{
-			// Expiration time in seconds must be a positive integer
-			NSString *urlString = [NSString stringWithFormat:@"%@:pasteservice?success=no&reason=InvalidExpiry", scheme];
-			[application openURL:[NSURL URLWithString:urlString]];
-			
-			// Never gets here
-			return YES;
-		}
-		
-		NSString *outFilePath = CLIPBOARD_PATH;
-		NSString *passwordPath = nil;
-		NSString *expiryPath = nil;
-		
-		if (clipboard) outFilePath =  [NSString stringWithFormat:@"%@/%@.txt", DOCUMENTS_FOLDER, clipboard];
-		if (clipboard) passwordPath = [NSString stringWithFormat:@"%@/%@.password", DOCUMENTS_FOLDER, clipboard];
-		if (clipboard) expiryPath =   [NSString stringWithFormat:@"%@/%@.expiration", DOCUMENTS_FOLDER, clipboard];
-		
-		// Recover any existing password for the clipboard
-		NSString *pw = [NSString stringWithContentsOfFile:passwordPath encoding:NSUTF8StringEncoding error:nil];
-		
-		// If a password is associated with the clipboard, compare it to anything that was sent along, whether or not one was supplied
-		if (pw && ![pw isEqualToString:password])
-		{
-			// wrong password
-			NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?success=no&reason=WrongPassword", scheme];
-			[application openURL:[NSURL URLWithString:urlString]];
-			
-			// Never gets here
-			return YES;
-		}
 				
 		// write to disk
-		[data writeToFile:outFilePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+		[data writeToFile:dataFilePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 		
 		// set expiry; only valid for custom clipboards
 		if (clipboard && expire)
@@ -155,7 +161,7 @@
 			[dict writeToFile:expiryPath atomically:YES];
 		}
 		
-		// set password; only valid for custom clipboards
+		// set password; only valid for custom clipboards and will create the first time used. Use clear to remove passwords
 		if (clipboard && password)
 		{
 			[password writeToFile:passwordPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
@@ -170,72 +176,23 @@
 		return YES; 
 	}
 	
+	// COPY SERVICE
 	// x-sadun-services:copy?scheme=iping&clipboard=name
 	if ([[action uppercaseString] isEqualToString:@"COPY"])
-	{
-		NSString *scheme = [paramDict objectForKey:@"scheme"];
-		if (!scheme) return NO;
-		
-		NSString *clipboard = [paramDict objectForKey:@"clipboard"];
-		NSString *password = [paramDict objectForKey:@"password"];
-		
-		if (clipboard && (![self isValidParameterName:clipboard]))
-		{
-			// clipboard must conform to legal name
-			NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?success=no&reason=InvalidClipboardName", scheme];
-			[application openURL:[NSURL URLWithString:urlString]];
-			
-			// Never gets here
-			return YES;
-		}
-		
-		if (clipboard && password && (![self isValidParameterName:password]))
-		{
-			// clipboard must conform to legal name
-			NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?success=no&reason=InvalidPassword", scheme];
-			[application openURL:[NSURL URLWithString:urlString]];
-			
-			// Never gets here
-			return YES;
-		}
-		
-		
-		NSString *inFilePath = CLIPBOARD_PATH;
-		NSString *passwordPath = nil;
-		NSString *expiryPath = nil;
-
-		if (clipboard) inFilePath =   [NSString stringWithFormat:@"%@/%@.txt", DOCUMENTS_FOLDER, clipboard];
-		if (clipboard) passwordPath = [NSString stringWithFormat:@"%@/%@.password", DOCUMENTS_FOLDER, clipboard];
-		if (clipboard) expiryPath =   [NSString stringWithFormat:@"%@/%@.expiration", DOCUMENTS_FOLDER, clipboard];
-		
+	{		
 		if (clipboard)
 		{
-			NSString *pw = [NSString stringWithContentsOfFile:passwordPath encoding:NSUTF8StringEncoding error:nil];
-			NSString *expiryPath = [NSString stringWithFormat:@"%@/%@.expiration", DOCUMENTS_FOLDER, clipboard];
 			NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:expiryPath];
 			
-			// If a password is supplied, match it to the string (or nil) returned
+			/* Removing this. Passwords are now ignored if there's none stored on the clipboard side.
 			if (password && ![password isEqualToString:pw])
 			{
-				// wrong password
 				NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?success=no&reason=WrongPassword", scheme];
 				[application openURL:[NSURL URLWithString:urlString]];
-				
-				// Never gets here
 				return YES;
 			}
-			
-			// No password supplied but one is required
-			if (pw && !password)
-			{
-				// wrong password
-				NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?success=no&reason=WrongPassword", scheme];
-				[application openURL:[NSURL URLWithString:urlString]];
-				
-				// Never gets here
-				return YES;
-			}
-			
+			*/
+						
 			// Is there an expiration date?
 			if (dict)
 			{
@@ -243,7 +200,7 @@
 				if ([[NSDate date] timeIntervalSinceDate:expDate] > 0)
 				{
 					// passed the expiry
-					[[NSFileManager defaultManager] removeItemAtPath:inFilePath error:nil];
+					[[NSFileManager defaultManager] removeItemAtPath:dataFilePath error:nil];
 					[[NSFileManager defaultManager] removeItemAtPath:expiryPath error:nil];
 					[[NSFileManager defaultManager] removeItemAtPath:passwordPath error:nil];
 					
@@ -257,7 +214,7 @@
 			}
 		}
 
-		NSString *data = [NSString stringWithContentsOfFile:inFilePath];
+		NSString *data = [NSString stringWithContentsOfFile:dataFilePath];
 		if (!data) data = @"";
 		
 		// pong back
@@ -268,59 +225,20 @@
 		return YES;
 	}
 	
-	
+	// CLEAR SERVICE
 	// x-sadun-services:clear?scheme=iping&clipboard=name
 	if ([[action uppercaseString] isEqualToString:@"CLEAR"])
-	{
-		NSString *scheme = [paramDict objectForKey:@"scheme"];
-		if (!scheme) return NO;
+	{		
+		/* Removing this. Passwords are now ignored if there's none stored on the clipboard side.
+		 if (password && ![password isEqualToString:pw])
+		 {
+		 NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?success=no&reason=WrongPassword", scheme];
+		 [application openURL:[NSURL URLWithString:urlString]];
+		 return YES;
+		 }
+		 */
 		
-		NSString *clipboard = [paramDict objectForKey:@"clipboard"];
-		NSString *password = [paramDict objectForKey:@"password"];
-		
-		if (clipboard && (![self isValidParameterName:clipboard]))
-		{
-			// clipboard must conform to legal name
-			NSString *urlString = [NSString stringWithFormat:@"%@:clearservice?success=no&reason=InvalidClipboardName", scheme];
-			[application openURL:[NSURL URLWithString:urlString]];
-			
-			// Never gets here
-			return YES;
-		}
-		
-		NSString *inFilePath = CLIPBOARD_PATH;
-		NSString *passwordPath = nil;
-		NSString *expiryPath = nil;
-
-		if (clipboard) inFilePath = [NSString stringWithFormat:@"%@/%@.txt", DOCUMENTS_FOLDER, clipboard];
-		if (clipboard) passwordPath = [NSString stringWithFormat:@"%@/%@.password", DOCUMENTS_FOLDER, clipboard];
-		if (clipboard) expiryPath =   [NSString stringWithFormat:@"%@/%@.expiration", DOCUMENTS_FOLDER, clipboard];
-
-		NSString *pw = [NSString stringWithContentsOfFile:passwordPath encoding:NSUTF8StringEncoding error:nil];
-		
-		// If a password is supplied, match it to the string (or nil) returned
-		if (clipboard && password && ![password isEqualToString:pw])
-		{
-			// wrong password
-			NSString *urlString = [NSString stringWithFormat:@"%@:clearservice?success=no&reason=WrongPassword", scheme];
-			[application openURL:[NSURL URLWithString:urlString]];
-			
-			// Never gets here
-			return YES;
-		}
-		
-		// No password supplied but one is required
-		if (clipboard && pw && !password)
-		{
-			// wrong password
-			NSString *urlString = [NSString stringWithFormat:@"%@:clearservice?success=no&reason=WrongPassword", scheme];
-			[application openURL:[NSURL URLWithString:urlString]];
-			
-			// Never gets here
-			return YES;
-		}
-		
-		[[NSFileManager defaultManager] removeItemAtPath:inFilePath error:nil];
+		[[NSFileManager defaultManager] removeItemAtPath:dataFilePath error:nil];
 
 		if (clipboard)
 		{

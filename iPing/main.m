@@ -21,7 +21,7 @@
 	// optional testing of clear functionality
 	// NSString *urlString = @"x-sadun-services:clear?scheme=iping&clipboard=test1";
 	
-	NSString *urlString = [NSString stringWithFormat:@"x-sadun-services:paste?scheme=iping&data=%@&clipboard=test1&password=foobar", escapedString];
+	NSString *urlString = [NSString stringWithFormat:@"x-sadun-services:paste?scheme=iping&data=%@&clipboard=test1&password=foobar&expire=10", escapedString];
 	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
 }
 
