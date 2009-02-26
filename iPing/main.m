@@ -17,7 +17,11 @@
 	
 	NSString *s = [(UITextView *)self.view text];
 	NSString *escapedString = [(NSString*)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,  (CFStringRef)s, NULL,  CFSTR("?=&amp;+"), kCFStringEncodingUTF8) autorelease];
-	NSString *urlString = [NSString stringWithFormat:@"ipong:paste?scheme=iping&data=%@", escapedString];
+
+	// optional testing of clear functionality
+	// NSString *urlString = @"x-sadun-services:clear?scheme=iping&clipboard=test1";
+	
+	NSString *urlString = [NSString stringWithFormat:@"x-sadun-services:paste?scheme=iping&data=%@&clipboard=test1&password=foobar", escapedString];
 	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
 }
 
@@ -26,7 +30,7 @@
 	[[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:START_KEY];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 
-	NSString *urlString = @"ipong:copy?scheme=iping";
+	NSString *urlString = @"x-sadun-services:copy?scheme=iping&clipboard=test1&password=foobar";
 	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
 }
 
@@ -86,7 +90,7 @@
 		}
 	}
 	
-	[tv setText:[NSString stringWithFormat:@"Time: %0.3f seconds\n %@\n %@", ti, aString, [paramDict description]]];
+	[tv setText:[NSString stringWithFormat:@"Time: %0.3f seconds\n %@\n %@", ti, action, [paramDict description]]];
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url

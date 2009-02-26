@@ -24,16 +24,16 @@
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>CFBundleURLTypes</key> 
-	<array> 
-		<dict> 
-			<key>CFBundleURLName</key> 
-			<string>com.sadun.demonstration</string> 
-			<key>CFBundleURLSchemes</key> 
-			<array> 
-				<string>ipong</string> 
-			</array> 
-		</dict> 
-	</array> 
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.sadun.usefulservices</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>x-sadun-services</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

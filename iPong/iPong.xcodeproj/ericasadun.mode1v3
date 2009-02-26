@@ -307,8 +307,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -326,11 +324,11 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>8E8B687E0F5722FE00A30BFD</string>
+										<string>8E8B68D10F5734CE00A30BFD</string>
 										<key>history</key>
 										<array>
 											<string>8EEBD99D0F55EDCA00B06981</string>
-											<string>8EEBD9DD0F55F3CE00B06981</string>
+											<string>8E8B68A70F5734B400A30BFD</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -356,6 +354,8 @@
 							<string>285pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -392,9 +392,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>8E8B687F0F5722FE00A30BFD</string>
+				<string>8E8B68D20F5734CE00A30BFD</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>8E8B68800F5722FE00A30BFD</string>
+				<string>8E8B68D30F5734CE00A30BFD</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -608,7 +608,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>8EEBD91A0F55DA0400B06981</string>
-				<string>8EEBD9DE0F55F3CE00B06981</string>
+				<string>8E8B68A80F5734B400A30BFD</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -650,8 +650,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {316, 185}}</string>
-											<string>{{316, 0}, {378, 185}}</string>
+											<string>{{0, 0}, {316, 194}}</string>
+											<string>{{316, 0}, {378, 194}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -666,8 +666,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {694, 185}}</string>
-											<string>{{0, 185}, {694, 196}}</string>
+											<string>{{0, 0}, {694, 194}}</string>
+											<string>{{0, 194}, {694, 187}}</string>
 										</array>
 									</dict>
 								</dict>
@@ -700,7 +700,7 @@
 										<real>148</real>
 									</array>
 									<key>Frame</key>
-									<string>{{316, 0}, {378, 185}}</string>
+									<string>{{316, 0}, {378, 194}}</string>
 									<key>RubberWindowFrame</key>
 									<string>105 515 694 422 0 0 1680 1028 </string>
 								</dict>
@@ -728,13 +728,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>8EEBD9310F55E00300B06981</string>
+				<string>8E8B68A90F5734B400A30BFD</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>8EEBD9320F55E00300B06981</string>
-				<string>8EEBD9330F55E00300B06981</string>
-				<string>8EEBD9340F55E00300B06981</string>
-				<string>8EEBD9350F55E00300B06981</string>
-				<string>8EEBD9360F55E00300B06981</string>
+				<string>8E8B68AA0F5734B400A30BFD</string>
+				<string>8E8B68AB0F5734B400A30BFD</string>
+				<string>8E8B68AC0F5734B400A30BFD</string>
+				<string>8E8B68AD0F5734B400A30BFD</string>
+				<string>8E8B68AE0F5734B400A30BFD</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -861,8 +861,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -898,7 +896,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>8EEBD9370F55E00300B06981</string>
+				<string>8E8B68AF0F5734B400A30BFD</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
