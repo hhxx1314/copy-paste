@@ -307,6 +307,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -324,11 +326,11 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>8EEBD9C50F55F29600B06981</string>
+										<string>8E8B687E0F5722FE00A30BFD</string>
 										<key>history</key>
 										<array>
 											<string>8EEBD99D0F55EDCA00B06981</string>
-											<string>8EEBD9A00F55EDCA00B06981</string>
+											<string>8EEBD9DD0F55F3CE00B06981</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -354,8 +356,6 @@
 							<string>285pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -392,9 +392,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>8EEBD9C60F55F29600B06981</string>
+				<string>8E8B687F0F5722FE00A30BFD</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>8EEBD9C70F55F29600B06981</string>
+				<string>8E8B68800F5722FE00A30BFD</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -528,8 +528,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>8EEBD9C80F55F29600B06981</string>
-		<string>/Users/ericasadun/Desktop/iPong/iPong.xcodeproj</string>
+		<string>/Users/ericasadun/Desktop/CopyPaste/iPong/iPong.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>659 469 788 504 0 0 1680 1028 </string>
@@ -609,7 +608,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>8EEBD91A0F55DA0400B06981</string>
-				<string>8EEBD91B0F55DA0400B06981</string>
+				<string>8EEBD9DE0F55F3CE00B06981</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

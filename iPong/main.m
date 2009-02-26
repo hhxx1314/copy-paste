@@ -36,16 +36,15 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-	if (!url) {  return NO; }
-	
 	// Recover the string
+	if (!url) return NO;
     NSString *URLString = [url absoluteString];
-	
 
 	// Form of command will be: ipong:command?param1=p1&param2=p2&param3=p3&param4=p4&param5=p5
 	NSRange colon = [URLString rangeOfString:@":"];
 	if (colon.location == NSNotFound) return NO;
-		
+	
+	// Extract command and parameter dictionary
 	NSString *action = [URLString substringFromIndex:(colon.location + 1)];
 	NSMutableDictionary *paramDict = [[[NSMutableDictionary alloc] init] autorelease];
 	NSRange r = [action rangeOfString:@"?"];
@@ -59,7 +58,7 @@
 		{
 			NSArray *pair = [eachParam componentsSeparatedByString:@"="];
 			if ([pair count] != 2) continue;
-			NSString *key = [pair objectAtIndex:0];
+			NSString *key = [[pair objectAtIndex:0] lowercaseString];
 			NSString *value = [pair objectAtIndex:1];
 			[paramDict setValue:value forKey:key];
 		}

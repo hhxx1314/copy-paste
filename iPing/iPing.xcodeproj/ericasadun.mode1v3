@@ -231,6 +231,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -324,11 +326,11 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>8EEBD9C90F55F29700B06981</string>
+										<string>8EEBD9DF0F55F3CE00B06981</string>
 										<key>history</key>
 										<array>
 											<string>8EEBD9160F55DA0400B06981</string>
-											<string>8EEBD9170F55DA0400B06981</string>
+											<string>8EEBD9C90F55F29700B06981</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -354,8 +356,6 @@
 							<string>285pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -392,9 +392,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>8EEBD9060F55D91100B06981</string>
+				<string>8EEBD9D10F55F39E00B06981</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>8EEBD9070F55D91100B06981</string>
+				<string>8EEBD9D20F55F39E00B06981</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -528,13 +528,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>8EEBD9CA0F55F29700B06981</string>
-		<string>8EEBD9630F55E9FE00B06981</string>
-		<string>8EEBD9640F55E9FE00B06981</string>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>8EEBD9500F55E98500B06981</string>
-		<string>/Users/ericasadun/Desktop/iPing/iPing.xcodeproj</string>
+		<string>/Users/ericasadun/Desktop/CopyPaste/iPing/iPing.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>550 429 788 504 0 0 1680 1028 </string>
@@ -614,7 +609,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>8EEBD9500F55E98500B06981</string>
-				<string>8EEBD9510F55E98500B06981</string>
+				<string>8EEBD9E00F55F3CE00B06981</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
