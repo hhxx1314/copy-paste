@@ -92,7 +92,7 @@
 	if (clipboard && (![self isValidParameterName:clipboard]))
 	{
 		// clipboard must conform to legal name
-		NSString *urlString = [NSString stringWithFormat:@"%@:pasteservice?success=no&reason=InvalidClipboardName", scheme];
+		NSString *urlString = [NSString stringWithFormat:@"%@:pasteservice?success=no&status=InvalidClipboardName", scheme];
 		[application openURL:[NSURL URLWithString:urlString]];
 		
 		// Never gets here
@@ -102,7 +102,7 @@
 	if (clipboard && password && (![self isValidParameterName:password]))
 	{
 		// password must conform to legal name
-		NSString *urlString = [NSString stringWithFormat:@"%@:pasteservice?success=no&reason=InvalidPassword", scheme];
+		NSString *urlString = [NSString stringWithFormat:@"%@:pasteservice?success=no&status=InvalidPassword", scheme];
 		[application openURL:[NSURL URLWithString:urlString]];
 		
 		// Never gets here
@@ -112,7 +112,7 @@
 	if (clipboard && expire && ([expire intValue] == 0))
 	{
 		// Expiration time in seconds must be a positive integer
-		NSString *urlString = [NSString stringWithFormat:@"%@:pasteservice?success=no&reason=InvalidExpiry", scheme];
+		NSString *urlString = [NSString stringWithFormat:@"%@:pasteservice?success=no&status=InvalidExpiry", scheme];
 		[application openURL:[NSURL URLWithString:urlString]];
 		
 		// Never gets here
@@ -135,7 +135,7 @@
 	if (pw && ![pw isEqualToString:password])
 	{
 		// wrong password
-		NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?success=no&reason=WrongPassword", scheme];
+		NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?success=no&status=WrongPassword", scheme];
 		[application openURL:[NSURL URLWithString:urlString]];
 		
 		// Never gets here
@@ -187,7 +187,7 @@
 			/* Removing this. Passwords are now ignored if there's none stored on the clipboard side.
 			if (password && ![password isEqualToString:pw])
 			{
-				NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?success=no&reason=WrongPassword", scheme];
+				NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?success=no&status=WrongPassword", scheme];
 				[application openURL:[NSURL URLWithString:urlString]];
 				return YES;
 			}
@@ -206,7 +206,7 @@
 					
 					// To make the behavior consistent, expired copies return 0 bytes. Therefore the following expired behavior is removed.
 					
-					// NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?success=no&reason=Expired", scheme];
+					// NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?success=no&status=Expired", scheme];
 					// [application openURL:[NSURL URLWithString:urlString]];
 					// Never gets here
 					// return YES;
@@ -214,11 +214,16 @@
 			}
 		}
 
+		NSString *status = @"";
 		NSString *data = [NSString stringWithContentsOfFile:dataFilePath];
-		if (!data) data = @"";
+		if (!data) 
+		{
+			data = @"";
+			status = @"&status=ClipboardEmpty";
+		}
 		
 		// pong back
-		NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?success=yes&bytes=%d&data=%@", scheme, [data length], data];
+		NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?success=yes&bytes=%d&data=%@%@", scheme, [data length], data, status];
 		[application openURL:[NSURL URLWithString:urlString]];
 		
 		// Never gets here
@@ -232,7 +237,7 @@
 		/* Removing this. Passwords are now ignored if there's none stored on the clipboard side.
 		 if (password && ![password isEqualToString:pw])
 		 {
-		 NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?success=no&reason=WrongPassword", scheme];
+		 NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?success=no&status=WrongPassword", scheme];
 		 [application openURL:[NSURL URLWithString:urlString]];
 		 return YES;
 		 }
