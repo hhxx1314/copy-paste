@@ -15,13 +15,19 @@
 	[[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:START_KEY];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 	
+	NSString *mimetype = [@"text/plain" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	NSString *s = [(UITextView *)self.view text];
 	NSString *escapedString = [(NSString*)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,  (CFStringRef)s, NULL,  CFSTR("?=&amp;+"), kCFStringEncodingUTF8) autorelease];
 
 	// optional testing of clear functionality
 	// NSString *urlString = @"x-sadun-services:clear?scheme=iping&clipboard=test1";
+	// NSString *urlString = [NSString stringWithFormat:@"x-sadun-services:type?scheme=iping&clipboard=test1&type=%@", mimetype];
+	// NSString *urlString = [NSString stringWithFormat:@"x-sadun-services:paste?scheme=iping&data=%@&clipboard=test1&password=foobar&expire=10", escapedString];
+	// NSString *urlString = @"x-sadun-services:type?scheme=iping&clipboard=test1&password=foobar";
 	
-	NSString *urlString = [NSString stringWithFormat:@"x-sadun-services:paste?scheme=iping&data=%@&clipboard=test1&password=foobar&expire=10", escapedString];
+	// THIS ONE PASTES WHATEVER IS IN THE TEXT VIEW
+	NSString *urlString = [NSString stringWithFormat:@"x-sadun-services:paste?scheme=iping&data=%@&clipboard=test1&password=foobar&type=%@", escapedString,mimetype];
+
 	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
 }
 
