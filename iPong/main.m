@@ -95,7 +95,7 @@
 	if (clipboard && (![self isValidParameterName:clipboard]))
 	{
 		// clipboard must conform to legal name
-		NSString *urlString = [NSString stringWithFormat:@"%@:pasteservice?success=no&status=InvalidClipboardName", scheme];
+		NSString *urlString = [NSString stringWithFormat:@"%@:pasteservice?status=InvalidClipboardName", scheme];
 		[application openURL:[NSURL URLWithString:urlString]];
 		
 		// Never gets here
@@ -105,7 +105,7 @@
 	if (clipboard && password && (![self isValidParameterName:password]))
 	{
 		// password must conform to legal name
-		NSString *urlString = [NSString stringWithFormat:@"%@:pasteservice?success=no&status=InvalidPassword", scheme];
+		NSString *urlString = [NSString stringWithFormat:@"%@:pasteservice?status=InvalidPassword", scheme];
 		[application openURL:[NSURL URLWithString:urlString]];
 		
 		// Never gets here
@@ -115,7 +115,7 @@
 	if (clipboard && expire && ([expire intValue] == 0))
 	{
 		// Expiration time in seconds must be a positive integer
-		NSString *urlString = [NSString stringWithFormat:@"%@:pasteservice?success=no&status=InvalidExpiry", scheme];
+		NSString *urlString = [NSString stringWithFormat:@"%@:pasteservice?status=InvalidExpiry", scheme];
 		[application openURL:[NSURL URLWithString:urlString]];
 		
 		// Never gets here
@@ -141,7 +141,7 @@
 	if (pw && ![pw isEqualToString:password])
 	{
 		// wrong password
-		NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?success=no&status=WrongPassword", scheme];
+		NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?status=WrongPassword", scheme];
 		[application openURL:[NSURL URLWithString:urlString]];
 		
 		// Never gets here
@@ -152,8 +152,6 @@
 	// x-sadun-services:paste?scheme=iping&data=hello+world&clipboard=name&expire=3600
 	if ([[action uppercaseString] isEqualToString:@"PASTE"])
 	{
-		NSString *status = @"";
-		
 		NSString *data = [paramDict objectForKey:@"data"];
 		if (!data) return YES;
 		
@@ -178,7 +176,7 @@
 		
 		if (clipboard && password && exists) 
 		{
-			// nothing for right now. Potentially add in a status
+			// nothing for right now. Potentially do something in the future. Probably not.
 		}
 		
 		// If a mimetype has been passed, write it out. If not, remove any existing mimetype
@@ -192,7 +190,7 @@
 		}
 		
 		// pong back
-		NSString *urlString = [NSString stringWithFormat:@"%@:pasteservice?success=yes&bytes=%d%@", scheme, [data length], status];
+		NSString *urlString = [NSString stringWithFormat:@"%@:pasteservice?status=Success&bytes=%d", scheme, [data length]];
 		[application openURL:[NSURL URLWithString:urlString]];
 		
 		// Never gets here
@@ -229,7 +227,7 @@
 			
 			if (!existingType)
 			{
-				NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?success=no&status=NoTypeFound", scheme];
+				NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?status=NoTypeFound", scheme];
 				[application openURL:[NSURL URLWithString:urlString]];
 				
 				// Never gets here
@@ -239,7 +237,7 @@
 			NSRange r = [existingType rangeOfString:[mimetype lowercaseString]];
 			if (r.location == NSNotFound)
 			{
-				NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?success=no&status=TypeMismatch", scheme];
+				NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?status=TypeMismatch", scheme];
 				[application openURL:[NSURL URLWithString:urlString]];
 				
 				// Never gets here
@@ -247,7 +245,7 @@
 			}
 		}
 		
-		NSString *status = @"";
+		NSString *status = @"&status=Success";
 		NSString *data = [NSString stringWithContentsOfFile:dataFilePath];
 		if (!data) 
 		{
@@ -263,8 +261,8 @@
 		}
 		
 		// pong back
-		NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?success=yes&bytes=%d&data=%@%@%@", 
-							   scheme, [data length], data, mimereturn, status];
+		NSString *urlString = [NSString stringWithFormat:@"%@:copyservice?%@&bytes=%d&data=%@%@", 
+							   scheme, status, [data length], data, mimereturn];
 		[application openURL:[NSURL URLWithString:urlString]];
 		
 		// Never gets here
@@ -285,7 +283,7 @@
 		}
 		
 		// pong back
-		NSString *urlString = [NSString stringWithFormat:@"%@:clearservice?success=yes", scheme];
+		NSString *urlString = [NSString stringWithFormat:@"%@:clearservice?status=Success", scheme];
 		[application openURL:[NSURL URLWithString:urlString]];
 		
 		// Never gets here
@@ -299,7 +297,7 @@
 		NSString *mimereturn = [NSString stringWithContentsOfFile:mimePath encoding:NSUTF8StringEncoding error:nil];
 		if (mimereturn)
 		{
-			NSString *urlString = [NSString stringWithFormat:@"%@:typeservice?success=yes&type=%@", scheme, mimereturn];
+			NSString *urlString = [NSString stringWithFormat:@"%@:typeservice?status=Success&type=%@", scheme, mimereturn];
 			[application openURL:[NSURL URLWithString:urlString]];
 			
 			// Never gets here
@@ -307,7 +305,7 @@
 		}
 		
 		// pong back
-		NSString *urlString = [NSString stringWithFormat:@"%@:typeservice?success=no&status=NoTypeFound", scheme];
+		NSString *urlString = [NSString stringWithFormat:@"%@:typeservice?status=NoTypeFound", scheme];
 		[application openURL:[NSURL URLWithString:urlString]];
 		
 		// Never gets here
@@ -316,7 +314,7 @@
 	
 	
 	// Shouldn't get here but may with ill-formed commands. Attempt to ditch.
-	NSString *urlString = [NSString stringWithFormat:@"%@:serviceerror?success=no&status=Unknown", scheme];
+	NSString *urlString = [NSString stringWithFormat:@"%@:serviceerror?status=Unknown", scheme];
 	[application openURL:[NSURL URLWithString:urlString]];
 	return YES;
 }
