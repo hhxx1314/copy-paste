@@ -197,48 +197,7 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>8E8B6A090F576D9800A30BFD</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>main.m</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>8E8B6A0A0F576D9800A30BFD</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>main.m</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>8E8B6A4F0F5771CA00A30BFD</string>
-						<key>history</key>
-						<array>
-							<string>8E8B6A030F576D7900A30BFD</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {1004, 852}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>549 135 1004 893 0 0 1680 1028 </string>
-			</dict>
-		</dict>
-	</array>
+	<array/>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -365,7 +324,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>8E8B6A4E0F5771CA00A30BFD</string>
+										<string>8E8B6A720F57745A00A30BFD</string>
 										<key>history</key>
 										<array>
 											<string>8EEBD9160F55DA0400B06981</string>
@@ -575,7 +534,6 @@
 		<string>8EEBD9500F55E98500B06981</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>/Users/ericasadun/Desktop/CopyPaste/iPing/iPing.xcodeproj</string>
-		<string>8E8B6A090F576D9800A30BFD</string>
 	</array>
 	<key>WindowString</key>
 	<string>750 524 788 504 0 0 1680 1028 </string>

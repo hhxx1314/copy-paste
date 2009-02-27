@@ -60,15 +60,15 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 257389038;
-			PBXWorkspaceStateSaveDate = 257389038;
+			PBXPerProjectTemplateStateSaveDate = 257390457;
+			PBXWorkspaceStateSaveDate = 257390457;
 		};
 		perUserProjectItems = {
-			8E8B69710F574D5100A30BFD = 8E8B69710F574D5100A30BFD /* PBXTextBookmark */;
-			8E8B69720F574D5100A30BFD = 8E8B69720F574D5100A30BFD /* PBXTextBookmark */;
-			8E8B69730F574D5100A30BFD = 8E8B69730F574D5100A30BFD /* PBXTextBookmark */;
-			8E8B69A70F574ECD00A30BFD = 8E8B69A70F574ECD00A30BFD /* PBXTextBookmark */;
-			8EEBD99F0F55EDCA00B06981 = 8EEBD99F0F55EDCA00B06981 /* PBXTextBookmark */;
+			8E8B69710F574D5100A30BFD /* PBXTextBookmark */ = 8E8B69710F574D5100A30BFD /* PBXTextBookmark */;
+			8E8B69720F574D5100A30BFD /* PBXTextBookmark */ = 8E8B69720F574D5100A30BFD /* PBXTextBookmark */;
+			8E8B6A680F57745900A30BFD /* PBXTextBookmark */ = 8E8B6A680F57745900A30BFD /* PBXTextBookmark */;
+			8E8B6A850F57777B00A30BFD /* PBXTextBookmark */ = 8E8B6A850F57777B00A30BFD /* PBXTextBookmark */;
+			8EEBD99F0F55EDCA00B06981 /* PBXTextBookmark */ = 8EEBD99F0F55EDCA00B06981 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 8EEBD8F90F55D83B00B06981 /* Source Control */;
 		userBuildSettings = {
@@ -76,10 +76,10 @@
 	};
 	29B97316FDCFA39411CA2CEA /* main.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {648, 4046}}";
+			sepNavIntBoundsRect = "{{0, 0}, {648, 4914}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 424}";
-			sepNavWindowFrame = "{{178, 68}, {1004, 949}}";
+			sepNavWindowFrame = "{{543, 59}, {1004, 949}}";
 		};
 	};
 	32CA4F630368D1EE00C91783 /* iPong_Prefix.pch */ = {
@@ -114,7 +114,7 @@
 		vrLen = 179;
 		vrLoc = 0;
 	};
-	8E8B69730F574D5100A30BFD /* PBXTextBookmark */ = {
+	8E8B6A680F57745900A30BFD /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
 		name = "main.m: 1";
@@ -124,7 +124,7 @@
 		vrLen = 424;
 		vrLoc = 0;
 	};
-	8E8B69A70F574ECD00A30BFD /* PBXTextBookmark */ = {
+	8E8B6A850F57777B00A30BFD /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
 		name = "main.m: 1";
